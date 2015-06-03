@@ -1,0 +1,62 @@
+{#{% extends "base.html" %}#}
+{% extends "index.html" %}
+{% load custom_markdown %}
+{% load staticfiles %}
+
+{% block content %}
+{#    {% block rightside %}#}
+{#    {% include "_side.html" %}#}
+{#    {% endblock %}#}
+    {% if list_header %}
+        <div class="box">———{{ list_header }}共有{{ posts|length}}篇</div></br>
+    {% endif %}
+    {% for post in posts %}
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <div class="blogs">
+        <h2><a href="{% url 'detail' id=post.id %}">{{ post.title }}</a></h2>
+        <ul>
+          <div class="post-description">
+              <p>
+                  {{ post.text|custom_markdown|truncatewords:2}}
+              </p>
+              <a class="readmore" href="{% url 'detail' id=post.id %}">More >>></a>
+              <p class="autor">
+                  <span>author：{{ post.author }}</span>
+                  <span>category：[<a href="{% url 'list_by_cg' post.category %}">{{ post.category }}</a>]</span>
+                  <span>tag: <a class="post-category post-category-js" href="{% url 'search_tag' tag=post.tag %}">[{{ post.tag|title }}]</a></span>
+                  <span>views:（<a href="/">459</a>）</span><span>comment:（<a href="/">30</a>）</span>
+              </p>
+          </div>
+        </ul>
+        <div class="dateview">{{ post.published_date|date:'Y /m /d'}}</div>
+        </div>
+    {% endfor %}
+
+
+        {% if posts.object_list and posts.paginator.num_pages > 1 %}
+          <div>
+          <ul class="pager">
+          <p>
+          {% if posts.has_previous %}
+            <a href="?page={{ posts.previous_page_number }}">previous</a>
+          {% endif %}
+
+              {% for page_number in posts.paginator.page_range %}
+                {% ifequal page_number  topics.number %}
+                  {{ page_number }}
+                {% else %}
+                  <a href="?page={{ page_number }}">{{ page_number }}</a>
+                {% endifequal %}
+              {% endfor %}
+
+          {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">next</a>
+          {% endif %}
+          </p>
+          </ul>
+          </div>
+        {% endif %}
+
+
+{% endblock %}

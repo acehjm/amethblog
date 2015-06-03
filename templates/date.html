@@ -1,0 +1,17 @@
+<div>
+    <div>
+    {% for article in posts %}
+        <li>{{ article.published_date|date:"F j, Y" }}: {{ article.title }}</li>
+    {% endfor %}
+    </div>
+    <div>
+        <p>
+    {% if previous_month %}
+        Previous Month: {{ previous_month|date:"F Y" }}
+    {% endif %}
+    {% if next_month %}
+        Next Month: {{ next_month|date:"F Y" }}
+    {% endif %}
+</p>
+    </div>
+</div>

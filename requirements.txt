@@ -1,0 +1,4 @@
+Django==1.8.1
+Markdown==2.6.2
+django-material==0.3.0
+linaro_django_pagination==2.0.2

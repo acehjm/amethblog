@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a blog page with a list of posts.">
+    <title>ameth</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="http://picturebag.qiniudn.com/blog.css">
+    <link rel="stylesheet" href="http://picturebag.qiniudn.com/vim.css">
+
+{#    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.3.0/css/amazeui.css">#}
+{#    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.3.0/css/amazeui.min.css">#}
+{#    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.3.0/js/amazeui.js">#}
+{#    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.3.0/js/amazeui.min.js">#}
+{#    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.3.0/js/amazeui.legacy.js">#}
+{#    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.3.0/js/amazeui.legacy.min.js">#}
+{#    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.3.0/js/amazeui.widgets.helper.js">#}
+{#    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.3.0/js/amazeui.widgets.helper.min.js">#}
+</head>
+<body>
+<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+        <div class="header">
+            <div class="page-header">
+                <h1 class="brand-title"><a href="/">ace_hjm</a></h1>
+            </div>
+            <h2 class="brand-tagline">偶尔,遇到自己</h2>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li>
+                        <form class="pure-form" action="/search/" method="get">
+                            <input class="pure-input-3-3" type="text" name="s" placeholder="search">
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="pure-button" href="https://github.com/acehjm">github</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="pure-button" href="http://weibo.com/mjh20">webo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="button-success pure-button" href="{% url 'archives' %}">归档</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="button-success pure-button" href="{% url 'RSS' %}">RSS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="button-success pure-button" href="{% url 'aboutme' %}">About Me</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+            {% block content %}
+            {% endblock %}
+            <div class="footer">
+                <div class="pure-menu pure-menu-horizontal pure-menu-open">
+                    <ul>
+                        <li><a href="#">About Me</a></li>
+                        <li><a href="#">google+</a></li>
+                        <li><a href="#">time</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
