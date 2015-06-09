@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^archives/$', archives, name='archives'),
     url(r'^aboutme/$', aboutme, name='aboutme'),
     url(r'^tag/(?P<tag>\w+)/$', search_tag, name='search_tag'),
-    url(r'^search/$',blog_search, name='blog_search'),
+    url(r'^search/$',blog_search, name='search'),
     url(r'^feed/$', RSSFeed(), name = "RSS"),
 ]
 

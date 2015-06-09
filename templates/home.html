@@ -1,38 +1,30 @@
-{#{% extends "base.html" %}#}
-{% extends "index.html" %}
+{% extends "oindex.html" %}
 {% load custom_markdown %}
-{% load staticfiles %}
 
 {% block content %}
-{#    {% block rightside %}#}
-{#    {% include "_side.html" %}#}
-{#    {% endblock %}#}
     {% if list_header %}
-        <div class="box">———{{ list_header }}共有{{ posts|length}}篇</div></br>
+        <div class="box">{{ list_header }}共有{{ posts|length}}篇</div></br>
     {% endif %}
     {% for post in posts %}
         <meta charset="utf-8">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <div class="blogs">
-        <h2><a href="{% url 'detail' id=post.id %}">{{ post.title }}</a></h2>
-        <ul>
-          <div class="post-description">
-              <p>
-                  {{ post.text|custom_markdown|truncatewords:2}}
-              </p>
-              <a class="readmore" href="{% url 'detail' id=post.id %}">More >>></a>
-              <p class="autor">
-                  <span>author：{{ post.author }}</span>
-                  <span>category：[<a href="{% url 'list_by_cg' post.category %}">{{ post.category }}</a>]</span>
-                  <span>tag: <a class="post-category post-category-js" href="{% url 'search_tag' tag=post.tag %}">[{{ post.tag|title }}]</a></span>
-                  <span>views:（<a href="/">459</a>）</span><span>comment:（<a href="/">30</a>）</span>
-              </p>
-          </div>
-        </ul>
-        <div class="dateview">{{ post.published_date|date:'Y /m /d'}}</div>
-        </div>
+        <div class="post">
+				<h2 class="title"><a href="{% url 'detail' id=post.id %}">{{ post.title }}</a></h2>
+                <p class="meta">
+                    <span class="date">{{ post.published_date|date:'Y-m-d'}}</span>
+                    <span class="posted"><a href="#">{{ post.author }}</a></span>
+                    <span class="tag"><a href="{% url 'search_tag' tag=post.tag %}">{{ post.tag|title }}</a></span>
+                    <span class="views"><a href="/">459</a></span>
+                    <span class="comments"><a href="/">30</a></span>
+                </p>
+				<div style="clear: both;">&nbsp;</div>
+				<div class="entry">
+                    <p>
+                        {{ post.text|custom_markdown|truncatewords:2}}
+                        <a class="readmore" href="{% url 'detail' id=post.id %}">More >>></a>
+                    </p>
+				</div>
+			</div>
     {% endfor %}
-
 
         {% if posts.object_list and posts.paginator.num_pages > 1 %}
           <div>
@@ -57,6 +49,4 @@
           </ul>
           </div>
         {% endif %}
-
-
 {% endblock %}

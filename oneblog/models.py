@@ -65,12 +65,9 @@ class Comment(models.Model):
     email = models.EmailField()   #邮箱
     text = models.TextField()   #评论
     time_submitted = models.DateTimeField(default=timezone.now)  #评论时间
-    ip = models.IPAddressField()      #ip地址
+    ip = models.GenericIPAddressField()      #ip地址
 
     def __str__(self):
         return '{0}: {1}'.format(self.author, self.post.title)
-
-class Sample(Module):
-    icon = 'mdi-image-compare'
 
 

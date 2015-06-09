@@ -1,6 +1,4 @@
-{#{% extends "base.html" %}#}
-{% extends "index.html" %}
-{% load staticfiles %}
+{% extends "oindex.html" %}
 {% block content %}
 <div class="posts">
     {% if error %}
@@ -10,11 +8,13 @@
             <section class="post">
                 <header class="post-header">
                     <h2 class="post-title"><a href="{% url 'detail' id=post.id %}">{{ post.title }}</a></h2>
-
-                        <p class="post-meta">
-                            time:  <a class="post-author" href="#">{{ post.published_date |date:'Y /m /d'}}</a>
-                            tag: <a class="post-category post-category-js" href="{% url 'search_tag' tag=post.tag %}">{{ post.tag }}</a>
-                        </p>
+                    <p class="meta">
+                        <span class="date">{{ post.published_date|date:'Y-m-d'}}</span>
+                        <span class="posted"><a href="#">{{ post.author }}</a></span>
+                        <span class="tag"><a href="{% url 'search_tag' tag=post.tag %}">{{ post.tag|title }}</a></span>
+                        <span class="views"><a href="/">459</a></span>
+                        <span class="comments"><a href="/">30</a></span>
+                    </p>
                 </header>
             </section>
         {% endfor %}

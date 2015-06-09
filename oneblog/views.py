@@ -33,7 +33,7 @@ def archives(request) :             #归档
         post_list = Article.objects.all()
     except Article.DoesNotExist :
         raise Http404
-    return render_to_response('archives.html', {'post_list' : post_list, 'error' : False})
+    return render(request, 'archives.html', {'post_list' : post_list, 'error' : False})
 
 def aboutme(request) :
     return render_to_response('aboutme.html')
@@ -54,7 +54,7 @@ def blog_search(request):
             post_list = Article.objects.filter(title__icontains = s)
             if len(post_list) == 0 :
                 return render_to_response(request, 'archives.html', {'post_list' : post_list,
-                                                    'error' : True})
+                                                    'error' : False})
             else :
                 return render_to_response(request, 'archives.html', {'post_list' : post_list,
                                                     'error' : False})

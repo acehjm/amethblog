@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+{% load staticfiles %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>ameth</title>
+<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css' />
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+<body>
+<div id="wrapper">
+	<div id="header-wrapper" class="container">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><a href="/">ace_hjm</a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li class="current_page_item"><a href="{% url 'archives' %}">Blog</a></li>
+				<li><a href="https://github.com/acehjm">github</a></li>
+				<li><a href="http://weibo.com/mjh20">weibo</a></li>
+                <li><a href="{% url 'aboutme' %}">about_me</a></li>
+			</ul>
+		</div>
+	</div>
+	<div><img src="{% static 'images/img03.png' %}" width="1000" height="40" alt="" /></div>
+	</div>
+	<!-- end #header -->
+	<div id="page">
+		<div id="content">
+            {% block content %}
+            {% endblock %}
+			<div style="clear: both;">&nbsp;</div>
+		</div>
+		<!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<div id="search" >
+						<form method="get" action="">
+							<div>
+								<input type="text" name="s" id="search-text" value="" />
+								<input type="submit" id="search-submit" value="GO" />
+							</div>
+						</form>
+					</div>
+					<div style="clear: both;">&nbsp;</div>
+				</li>
+				<li>
+					<h2>Categories</h2>
+					<ul>
+						{% if categories %}
+                        {% for c in categories %}
+                            <li>* <a href="{% url 'list_by_cg' c.name %}">{{ c.name|safe }}</a></li>
+                        {% endfor %}
+                        {% endif %}
+					</ul>
+				</li>
+				<li>
+					<h2>Blogroll</h2>
+					<ul>
+						{% for post in posts %}
+                            <li>*<a href="{% url 'detail' id=post.id %}">{{ post.title }}</a></li>
+                        {% endfor %}
+					</ul>
+				</li>
+				<li>
+					<h2>Archives</h2>
+					<ul>
+						{% if categories %}
+                            {% for c in posts %}
+                                <li>{{ c.published_date.year }}年{{ c.published_date.month }}月</li>
+                            {% endfor %}
+                            {% endif %}
+					</ul>
+				</li>
+                <li>
+					<h2>tags</h2>
+                    <ul>
+                        {% for post in posts %}
+                            <a href="{% url 'search_tag' tag=post.tag %}">{{ post.tag|title }}</a>
+                        {% endfor %}
+                    </ul>
+				</li>
+                <li>
+					<h2>links</h2>
+                    <ul>
+                        <a href="http://www.droid4.us">droid4us</a><br/>
+                        <a href="http://blog.csdn.net/u012607848">ameth's CSDN</a>
+                    </ul>
+				</li>
+			</ul>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<div class="container"><img src="{% static 'images/img03.png' %}" width="1000" height="40" alt="" /></div>
+	<!-- end #page -->
+</div>
+<div id="footer-content"></div>
+<div id="footer">
+	<p>&copy; Design by <a href="#" rel="nofollow">ameth</a>.</p>
+</div>
+<!-- end #footer -->
+</body>
+</html>
