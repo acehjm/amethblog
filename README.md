@@ -1,14 +1,14 @@
 # ameth's blog
 
 ------
-###Requirements
+### Requirements
 > * Python 2.7.9
 > * Django 1.8.1
 > * material
 > * duoshuo
 > * ......
 
-###Install
+### Install
 ```
 $ git clone https://github.com/acehjm/amethblog
 
@@ -16,7 +16,7 @@ or
 
 $ git clone git@github.com:acehjm/amethblog.git
 ```
-###Usage
+### Usage
 
 You can use the example of blog, just to do below:
 
@@ -31,7 +31,7 @@ http://127.0.0.1:8000/
 ```
 不同平台环境下方式不同
 
-###Done
+### Done
 - material design优化后台管理
 - markdown和代码高亮
 - 多说评论
@@ -44,7 +44,7 @@ http://127.0.0.1:8000/
 - 搜索
 - mysql数据库
 
-###undo
+### Undo
 
 - 缓存功能
 - bug修改
